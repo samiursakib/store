@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // Styles
 import "./style.scss";
 
-const Search = props => {
+const Search = ({ search, resetSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [toggleReset, setToggleReset] = useState(false);
 
@@ -11,13 +11,13 @@ const Search = props => {
     const value = event.target.value;
     setSearchTerm(value);
     if (!value.length) {
-      props.search(value);
+      search(value);
     }
   };
 
   const handleSearchReset = () => {
     setToggleReset(false);
-    props.resetSearch("");
+    resetSearch("");
   };
 
   const handleSubmit = event => {
@@ -30,7 +30,7 @@ const Search = props => {
       setToggleReset(false);
     }
 
-    props.search(searchTerm);
+    search(searchTerm);
   };
 
   return (
